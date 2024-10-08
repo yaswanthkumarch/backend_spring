@@ -16,6 +16,12 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
+    // New GetMapping for /message
+    @GetMapping("/message")
+    public String message() {
+        System.out.println("message");
+        return "Hello from the message endpoint!";
+    }
 
     @PostMapping("/submit")
     public ResponseEntity<Employee> saveEmployee(@RequestBody Employee employee) {
@@ -27,7 +33,6 @@ public class EmployeeController {
     public ResponseEntity<List<Employee>> getAllEmployees() {
         return new ResponseEntity<>(employeeService.getAllEmployees(), HttpStatus.OK);
     }
-
 
     @GetMapping("/get")
     public ResponseEntity<Employee> getEmployeeById(@RequestParam int employeeId) {
@@ -46,5 +51,4 @@ public class EmployeeController {
         employeeService.deleteEmployee(employeeId);
         return new ResponseEntity<>("Employee deleted", HttpStatus.OK);
     }
-
 }
